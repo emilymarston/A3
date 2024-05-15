@@ -4,7 +4,7 @@ function App() {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    fetch('/api')  // Replace this with the API endpoint you created
+    fetch('http://127.0.0.1:5000/api')  // This should match your Flask endpoint
       .then(response => response.text())
       .then(data => setMessage(data));
   }, []);
