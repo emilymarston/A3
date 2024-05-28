@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, abort
 from . import db
-from .models import Manager
+from models import Manager
 
 manager_routes = Blueprint('manager_routes', __name__)
 

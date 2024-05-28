@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, abort
 from . import db
-from .models import KitchenStaff, Order
+from models import KitchenStaff, Order
 
 kitchenstaff_routes = Blueprint('kitchenstaff_routes', __name__)
 

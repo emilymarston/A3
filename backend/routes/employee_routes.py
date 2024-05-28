@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from . import db
-from . import Employee
+from models import Employee
 
 employee_routes = Blueprint('employee_routes', __name__)
 

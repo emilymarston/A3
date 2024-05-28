@@ -3,4 +3,9 @@ from .manager import Manager
 from .waitstaff import Waitstaff
 from .kitchen_staff import KitchenStaff
 from .delivery_staff import DeliveryStaff
+from .reservation import Reservation
+from .customer_data_record import CustomerDataRecord
+from .feedback import Feedback
+from .membership import Membership
+from .asset import Asset
 from . import db

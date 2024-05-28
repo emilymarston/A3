@@ -1,9 +1,9 @@
-from .employee import Employee
 from . import db
 from datetime import datetime
+from  models import Employee
 from .reservation import Reservation
-from .order import Order
 from .membership import Membership
+from .order import Order
 from flask import abort
 
 class Waitstaff(Employee):

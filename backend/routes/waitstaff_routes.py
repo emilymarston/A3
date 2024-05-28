@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request, abort
 from . import db
-from .models import Waitstaff, Reservation, Order, Membership
+from models import Waitstaff, Reservation, Order, Membership
 from datetime import datetime
 
 waitstaff_routes = Blueprint('waitstaff_routes', __name__)

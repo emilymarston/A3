@@ -1,14 +1,14 @@
 from .employee import Employee
 from . import db
-from .models import Order
+from .order import Order
 
 class DeliveryStaff(Employee):
     __tablename__ = 'deliverystaff'
-    id = db.Column(db.Integer, db.ForeignKey('employees.id'), primary_key=True)
-    vehicle_number_plate = db.Column(db.String(10))
-    delivery_area = db.Column(db.String(100))
-    current_location_latitude = db.Column(db.Float)
-    current_location_longitude = db.Column(db.Float)
+    id                          = db.Column(db.Integer, db.ForeignKey('employees.id'), primary_key=True)
+    vehicle_number_plate        = db.Column(db.String(10))
+    delivery_area               = db.Column(db.String(100))
+    current_location_latitude   = db.Column(db.Float)
+    current_location_longitude  = db.Column(db.Float)
 
     __mapper_args__ = {
         'polymorphic_identity': 'deliverystaff',
