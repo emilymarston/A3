@@ -12,6 +12,7 @@ function App() {
   return (
     <div className="App">
       <h1>{message}</h1>
+      <p>   Hello, welcome to my React app!</p> {/* Add this line */}
     </div>
   );
 }
