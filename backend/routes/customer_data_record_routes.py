@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify, abort
 from . import db
-from models import CustomerDataRecord, Feedback, Customer
+from models import CustomerDataRecord, Feedback, Customer, Membership
 
 customer_record_routes = Blueprint('customer_record_routes', __name__)
 

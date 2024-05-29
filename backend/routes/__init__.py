@@ -10,6 +10,14 @@ from .reservation_routes import reservation_routes
 from .feedback_routes import feedback_routes
 from .membership_routes import membership_routes
 from .asset_routes import asset_routes
+from .customer_data_record_routes import customer_data_record_routes
+from .customer_routes import customer_routes
+from .in_store_customer_routes import in_store_customer_routes
+from .online_customer_routes import online_customer_routes
+from .order_routes import order_routes
+from .menu_item_routes import menu_item_routes
+from .bill_routes import bill_routes
+from .payment_method_routes import payment_method_routes
 
 # Create blueprints for each set of routes
 blueprints = [
@@ -21,7 +29,15 @@ blueprints = [
     reservation_routes,
     feedback_routes,
     membership_routes,
-    asset_routes
+    asset_routes,
+    customer_data_record_routes,
+    customer_routes,
+    in_store_customer_routes,
+    online_customer_routes,
+    order_routes,
+    menu_item_routes,
+    bill_routes,
+    payment_method_routes
 ]
 
 # Register all blueprints

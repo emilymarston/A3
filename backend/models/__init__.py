@@ -8,4 +8,13 @@ from .customer_data_record import CustomerDataRecord
 from .feedback import Feedback
 from .membership import Membership
 from .asset import Asset
+from .customer import Customer
+from .in_store_customer import InStoreCustomer
+from online_customer import OnlineCustomer
+from .order import Order
+from .menu_item import MenuItem
+from .bill import Bill
+from .payment_method import PaymentMethod
+from .cash import Cash
+from .credit_card import CreditCard
 from . import db
