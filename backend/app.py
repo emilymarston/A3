@@ -88,7 +88,7 @@ def create_app():
         # Display reservations data
         html_content += "<h2>Reservations</h2>"
         html_content += "<table border='1'>"
-        html_content += "<tr><th>Reservation ID</th><th>Reservation Date</th><th>Table Number</th><th>Number of Guests</th><th>Customer ID</th></tr>"
+        html_content += "<tr><th>Reservation ID</th><th>Reservation Date</th><th>Table Number</th><th>Number of Guests</th></tr>"
         for reservation in reservations:
             html_content += f"<tr><td>{reservation.reservation_id}</td><td>{reservation.reservation_date}</td><td>{reservation.table_number}</td><td>{reservation.number_of_guests}</td></tr>"
         html_content += "</table>"
