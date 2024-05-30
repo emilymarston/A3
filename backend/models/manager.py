@@ -1,5 +1,5 @@
+from .db import db
 from .employee import Employee
-from . import db
 
 class Manager(Employee):
     __tablename__ = 'managers'

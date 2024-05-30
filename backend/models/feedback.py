@@ -1,10 +1,10 @@
-from . import db
+from models.db import db
 
-class Feedback(db.model):
+class Feedback(db.Model):
     __tablename__ = 'feedback'
 
-    feedback_id     = db.Column(db.Integer)
-    customer_id     = db.Column(db.Integer)
+    id              = db.Column(db.Integer, primary_key=True)
+    customer_id     = db.Column(db.Integer, db.ForeignKey('customers.customer_id'), nullable=False)
     content         = db.Column(db.String(100))
     rating          = db.Column(db.Integer)
 

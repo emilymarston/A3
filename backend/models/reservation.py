@@ -1,28 +1,27 @@
-from . import db
+from .db import db
 from datetime import datetime
-from asset import Asset
 
 class Reservation(db.Model):
     __tablename__ = 'reservations'
 
-    reservation_id = db.Column(db.Integer, primary_key=True)
-    reservation_date = db.Column(db.DateTime, nullable=False)
-    table_number = db.Column(db.Integer, db.ForeignKey('assets.id'), nullable=False)
-    number_of_guests = db.Column(db.Integer, nullable=False)
+    reservation_id      = db.Column(db.Integer, primary_key=True)
+    reservation_date    = db.Column(db.DateTime, nullable=False)
+    table_number        = db.Column(db.Integer, nullable=False)
+    number_of_guests    = db.Column(db.Integer, nullable=False)
+    customer_id         = db.Column(db.Integer, db.ForeignKey('customers.customer_id'), nullable=False)
 
-    table = db.relationship('Asset')
-
-    def __init__(self, reservation_date, table_number, number_of_guests):
-        self.reservation_date = reservation_date
+    def __init__(self, reservation_date_str, table_number, number_of_guests, customer_id):
+        self.reservation_date = datetime.strptime(reservation_date_str, "%d-%m-%Y")
         self.table_number = table_number
         self.number_of_guests = number_of_guests
+        self.customer_id = customer_id
 
     def to_dict(self):
         return {
             "reservation_id": self.reservation_id,
-            "reservation_date": self.reservation_date,
+            "reservation_date": self.reservation_date.strftime("%d-%m-%Y"),
             "table_number": self.table_number,
-            "number_of_guests": self.number_of_guests
+            "number_of_guests": self.number_of_guests,
         }
 
     def confirm_reservation(self):

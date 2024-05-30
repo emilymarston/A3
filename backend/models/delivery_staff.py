@@ -1,9 +1,9 @@
+from .db import db
 from .employee import Employee
-from . import db
 from .order import Order
 
 class DeliveryStaff(Employee):
-    __tablename__ = 'deliverystaff'
+    __tablename__ = 'delivery_staff'
     id                          = db.Column(db.Integer, db.ForeignKey('employees.id'), primary_key=True)
     vehicle_number_plate        = db.Column(db.String(10))
     delivery_area               = db.Column(db.String(100))
@@ -11,7 +11,7 @@ class DeliveryStaff(Employee):
     current_location_longitude  = db.Column(db.Float)
 
     __mapper_args__ = {
-        'polymorphic_identity': 'deliverystaff',
+        'polymorphic_identity': 'delivery_staff',
     }
 
     def __init__(self, name, contact_number, vehicle_plate_number, delivery_area):
