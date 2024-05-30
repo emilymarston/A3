@@ -77,7 +77,8 @@ def create_app():
         employees = Employee.query.all()
 
         # Render the data as HTML table with headings
-        html_content = "<h2>Customers</h2>"
+        html_content = "<style> table { border-collapse: collapse; } th, td { padding: 5px; } </style>"
+        html_content += "<h2>Customers</h2>"
         html_content += "<table border='1'>"
         html_content += "<tr><th>Customer ID</th><th>Name</th><th>Contact Info</th></tr>"
         for customer in customers:
