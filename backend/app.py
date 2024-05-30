@@ -36,7 +36,7 @@ def create_app():
         db.session.commit()
 
         # Add sample data for two customers with orders
-        sample_customer1 = Customer(name="John Doe", contact_info="john@example.com", address="123 Main Road")
+        sample_customer1 = Customer(name="John Doe", contact_info="john@example.com", address="123 Glenferrie Road, Hawthorn, VIC 3122")
         db.session.add(sample_customer1)
         db.session.commit()
 
@@ -44,7 +44,7 @@ def create_app():
         db.session.add(sample_order1)
         db.session.commit()
 
-        sample_customer2 = Customer(name="Jane Smith", contact_info="jane@example.com", address="456 Elm Street", has_membership=True)  # Set membership status
+        sample_customer2 = Customer(name="Jane Smith", contact_info="jane@example.com", address="456 Glenferrie Road, Hawthorn, VIC 3122", has_membership=True)  # Set membership status
         db.session.add(sample_customer2)
         db.session.commit()
 
@@ -58,7 +58,7 @@ def create_app():
         db.session.commit()
 
         # Add sample reservation
-        sample_reservation2 = Reservation(reservation_date_str="11-03-2024", table_number=2, number_of_guests=3)
+        sample_reservation2 = Reservation(reservation_date_str="11-03-2024", table_number=2, number_of_guests=3, customer_id=sample_customer2.customer_id)
         db.session.add(sample_reservation2)
         db.session.commit()
 
@@ -97,9 +97,9 @@ def create_app():
         # Display reservations data
         html_content += "<h2>Reservations</h2>"
         html_content += "<table border='1'>"
-        html_content += "<tr><th>Reservation ID</th><th>Reservation Date</th><th>Table Number</th><th>Number of Guests</th></tr>"
+        html_content += "<tr><th>Reservation ID</th><th>Reservation Date</th><th>Table Number</th><th>Number of Guests</th><th>Customer ID</th></tr>"
         for reservation in reservations:
-            html_content += f"<tr><td>{reservation.reservation_id}</td><td>{reservation.reservation_date}</td><td>{reservation.table_number}</td><td>{reservation.number_of_guests}</td></tr>"
+            html_content += f"<tr><td>{reservation.reservation_id}</td><td>{reservation.reservation_date}</td><td>{reservation.table_number}</td><td>{reservation.number_of_guests}</td><td>{reservation.customer_id}</td></tr>"
         html_content += "</table>"
 
         # Display orders data

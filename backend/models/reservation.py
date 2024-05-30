@@ -8,15 +8,13 @@ class Reservation(db.Model):
     reservation_date    = db.Column(db.DateTime, nullable=False)
     table_number        = db.Column(db.Integer, nullable=False)
     number_of_guests    = db.Column(db.Integer, nullable=False)
-    #customer_id         = db.Column(db.Integer, db.ForeignKey('customers.customer_id'), nullable=False)
+    customer_id         = db.Column(db.Integer, db.ForeignKey('customers.customer_id'), nullable=False)
 
-    #customer = db.relationship('Customer')
-
-    def __init__(self, reservation_date_str, table_number, number_of_guests):
+    def __init__(self, reservation_date_str, table_number, number_of_guests, customer_id):
         self.reservation_date = datetime.strptime(reservation_date_str, "%d-%m-%Y")
         self.table_number = table_number
         self.number_of_guests = number_of_guests
-        #self.customer_id = customer_id
+        self.customer_id = customer_id
 
     def to_dict(self):
         return {

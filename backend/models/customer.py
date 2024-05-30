@@ -12,7 +12,7 @@ class Customer(db.Model):
     name            = db.Column(db.String(100), nullable=False)
     contact_info    = db.Column(db.String(50), nullable=False)
     address         = db.Column(db.String(200))
-    has_membership  = db.Column(db.Boolean, default=False)  # New column for membership status
+    has_membership  = db.Column(db.Boolean, default=False) 
     type            = db.Column(db.String(50))
 
     __mapper_args__ = {
