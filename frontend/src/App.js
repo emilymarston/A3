@@ -1,18 +1,34 @@
-import React, {useState, useEffect} from 'react';
+import './App.css';
+import NavBar from './components/header/NavBar'
+import Homepage from './pages/Homepage'
+import Footer from './components/footer/Footer'
+import PickUp from './pages/PickUp'
+//import MenuPage from './pages/MenuPage'
+import CustomerLogin from './pages/LoginMember'
+import CustomerForm from './pages/CustomerForm'
+import DeliveryPage from './pages/DeliveryPage'
+import Reservation from './pages/Reservation'
+import StaffLogin from './pages/StaffLogin';
+import ManagementPortal from './pages/ManagementPortal';
+import { Route, Routes } from 'react-router-dom'
 
 function App() {
-  const [message, setMessage] = useState('');
-
-  useEffect(() => {
-    fetch('http://127.0.0.1:5000/api')  // This should match your Flask endpoint
-      .then(response => response.text())
-      .then(data => setMessage(data));
-  }, []);
-
   return (
     <div className="App">
-      <h1>{message}</h1>
-      <p>   Hello, welcome to my React app!</p> {/* Add this line */}
+      
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/pickup" element={<PickUp />} />
+        {/*<Route path="/menupage" element={<MenuPage />} />*/}
+        <Route path="/customerlogin" element={<CustomerLogin />} />
+        <Route path="/customerform" element={<CustomerForm />} />
+        <Route path="/deliverypage" element={<DeliveryPage />} />
+        <Route path="/reservation" element={<Reservation />} />
+        <Route path="/stafflogin" element={<StaffLogin />} />
+        <Route path="/managementportal" element={<ManagementPortal />} />
+      </Routes>
+      <Footer />
     </div>
   );
 }
