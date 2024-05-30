@@ -22,7 +22,6 @@ class Reservation(db.Model):
             "reservation_date": self.reservation_date.strftime("%d-%m-%Y"),
             "table_number": self.table_number,
             "number_of_guests": self.number_of_guests,
-            #"customer_id": self.customer_id
         }
 
     def confirm_reservation(self):

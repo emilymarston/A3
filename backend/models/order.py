@@ -22,7 +22,7 @@ class Order(db.Model):
     def to_dict(self):
         return {
             "order_id": self.order_id,
-            "order_date": self.order_date.strftime("%d-%m-%Y"),  # Format the date as 'YYYY-MM-DD'
+            "order_date": self.order_date.strftime("%d-%m-%Y"),
             "customer_id": self.customer_id,
             "order_status": self.order_status,
             "order_items": self.order_items,

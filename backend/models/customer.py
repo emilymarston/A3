@@ -11,8 +11,10 @@ class Customer(db.Model):
     address         = db.Column(db.String(200))
     has_membership  = db.Column(db.Boolean, default=False)
 
-    orders = db.relationship('Order', backref='customer')  # Define relationship with Order
-    reservations = db.relationship('Reservation', backref='customer')  # Define relationship with Reservation
+    # Define relatioinships to other classes
+    orders          = db.relationship('Order', backref='customer')
+    reservations    = db.relationship('Reservation', backref='customer') 
+    feedbacks       = db.relationship('Feedback', backref='customer')
 
     def place_order(self, order_items, order_type):
         order = Order(customer_id=self.customer_id, order_items=order_items, order_type=order_type)

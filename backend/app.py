@@ -95,12 +95,12 @@ def create_app():
             
             html_content += "<td>"
             for order in customer.orders:
-                html_content += f"Order ID: {order.order_id}, Status: {order.order_status}<br>"
+                html_content += f"Order ID: {order.order_id}<br>Status: {order.order_status}<br>"
             html_content += "</td>"
             
             html_content += "<td>"
             for reservation in customer.reservations:
-                html_content += f"Reservation ID: {reservation.reservation_id}, Date: {reservation.reservation_date.strftime('%Y-%m-%d')}<br>"
+                html_content += f"Reservation ID: {reservation.reservation_id}<br>Date: {reservation.reservation_date.strftime('%Y-%m-%d')}<br>"
             html_content += "</td>"
             
             html_content += "</tr>"
