@@ -6,6 +6,7 @@ from models.db import db
 from models.customer import Customer
 from models.order import Order
 from models.reservation import Reservation
+from models.feedback import Feedback
 
 from models.employee import Employee
 from models.manager import Manager
@@ -29,24 +30,30 @@ def create_app():
         db.session.query(Customer).delete()
         db.session.query(Order).delete()
         db.session.query(Reservation).delete()
+        db.session.query(Feedback).delete()
         db.session.query(Employee).delete()
         db.session.commit()
 
-        # Add sample data for two customers with two different orders
-        sample_customer1 = Customer(name="John Doe", contact_info="john@example.com", address="123 Main St")
+        # Add sample data for two customers with orders
+        sample_customer1 = Customer(name="John Doe", contact_info="john@example.com", address="123 Main Road")
         db.session.add(sample_customer1)
         db.session.commit()
 
-        sample_order1 = Order(customer_id=sample_customer1.customer_id, order_status="Preparing", order_items="Sample Item 1", order_type="Online")
+        sample_order1 = Order(customer_id=sample_customer1.customer_id, order_status="Preparing", order_items="Sandwich", order_type="Online")
         db.session.add(sample_order1)
         db.session.commit()
 
-        sample_customer2 = Customer(name="Jane Smith", contact_info="jane@example.com", address="456 Elm St")
+        sample_customer2 = Customer(name="Jane Smith", contact_info="jane@example.com", address="456 Elm Street")
         db.session.add(sample_customer2)
         db.session.commit()
 
-        sample_order2 = Order(customer_id=sample_customer2.customer_id, order_status="Delivered", order_items="Sample Item 2", order_type="In-Store")
+        sample_order2 = Order(customer_id=sample_customer2.customer_id, order_status="Delivered", order_items="Coffee", order_type="In-Store")
         db.session.add(sample_order2)
+        db.session.commit()
+
+        # Create and attach feedback instance to customer 2
+        sample_feedback = Feedback(customer_id=sample_customer2.customer_id, rating=5, content="Great service!")
+        db.session.add(sample_feedback)
         db.session.commit()
 
         # Add sample reservation
@@ -54,7 +61,7 @@ def create_app():
         db.session.add(sample_reservation2)
         db.session.commit()
 
-        # Add a sample employee
+        # Add sample employees
         sample_employee1 = Employee(name="Alice Park", contact_number="0412 345 678", role="manager")
         db.session.add(sample_employee1)
 
@@ -74,15 +81,16 @@ def create_app():
         customers = Customer.query.all()
         orders = Order.query.all()
         reservations = Reservation.query.all()
+        feedbacks = Feedback.query.all()
         employees = Employee.query.all()
 
         # Render the data as HTML table with headings
         html_content = "<style> table { border-collapse: collapse; } th, td { padding: 5px; } </style>"
         html_content += "<h2>Customers</h2>"
         html_content += "<table border='1'>"
-        html_content += "<tr><th>Customer ID</th><th>Name</th><th>Contact Info</th></tr>"
+        html_content += "<tr><th>Customer ID</th><th>Name</th><th>Contact Information</th></th><th>Address</th></tr>"
         for customer in customers:
-            html_content += f"<tr><td>{customer.customer_id}</td><td>{customer.name}</td><td>{customer.contact_info}</td></tr>"
+            html_content += f"<tr><td>{customer.customer_id}</td><td>{customer.name}</td><td>{customer.contact_info}</td><td>{customer.address}</td></tr>"
         html_content += "</table>"
         
         # Display reservations data
@@ -96,9 +104,17 @@ def create_app():
         # Display orders data
         html_content += "<h2>Orders</h2>"
         html_content += "<table border='1'>"
-        html_content += "<tr><th>Order ID</th><th>Order Date</th><th>Customer ID</th><th>Order Status</th><th>Order Items</th><th>Order Type</th></tr>"
+        html_content += "<tr><th>Order ID</th><th>Order Date</th><th>Customer ID</th><th>Order Status</th><th>Items</th><th>Order Type</th></tr>"
         for order in orders:
             html_content += f"<tr><td>{order.order_id}</td><td>{order.order_date.strftime('%Y-%m-%d')}</td><td>{order.customer_id}</td><td>{order.order_status}</td><td>{order.order_items}</td><td>{order.order_type}</td></tr>"
+        html_content += "</table>"
+
+        # Display feedbacks data
+        html_content += "<h2>Feedback</h2>"
+        html_content += "<table border='1'>"
+        html_content += "<tr><th>Feedback ID</th><th>Customer ID</th><th>Rating</th><th>Comment</th></tr>"
+        for feedback in feedbacks:
+            html_content += f"<tr><td>{feedback.id}</td><td>{feedback.customer_id}</td><td>{feedback.rating}</td><td>{feedback.content}</td></tr>"
         html_content += "</table>"
         html_content += "<br><br>"
 
