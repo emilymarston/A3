@@ -102,7 +102,7 @@ def create_app():
         html_content += "<br><br>"
 
         # Display employee data
-        html_content += "<h1>Employees</h1>"
+        html_content += "<h2>Employees</h2>"
         html_content += "<table border='1'>"
         html_content += "<tr><th>ID</th><th>Name</th><th>Role</th><th>Contact Number</th></tr>"
         for employee in employees:
