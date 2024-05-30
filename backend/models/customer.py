@@ -1,5 +1,5 @@
 from .db import db
-from .membership import Membership
+#from .membership import Membership
 from .order import Order
 
 class Customer(db.Model):
@@ -12,8 +12,8 @@ class Customer(db.Model):
     customer_id     = db.Column(db.Integer, primary_key=True)
     name            = db.Column(db.String(100), nullable=False)
     contact_info    = db.Column(db.String(50), nullable=False)
-    membership_id   = db.Column(db.Integer, db.ForeignKey('memberships.id'))
-    membership      = db.relationship('Membership', backref='customer')
+    #membership_id   = db.Column(db.Integer, db.ForeignKey('memberships.id'))
+    #membership      = db.relationship('Membership', backref='customer')
     address         = db.Column(db.String(200))
     type            = db.Column(db.String(50))
 

@@ -11,6 +11,8 @@ class Order(db.Model):
     order_items     = db.Column(db.Text, nullable=False)  # Storing items as a JSON string
     order_type      = db.Column(db.String(50), nullable=False)
 
+    bill = db.relationship('Bill', back_populates='order', uselist=False)
+
     def __init__(self, customer_id, order_status, order_items, order_type):
         self.customer_id = customer_id
         self.order_status = order_status
@@ -20,7 +22,7 @@ class Order(db.Model):
     def to_dict(self):
         return {
             "order_id": self.order_id,
-            "order_date": self.order_date,
+            "order_date": self.order_date.strftime("%d-%m-%Y"),  # Format the date as 'YYYY-MM-DD'
             "customer_id": self.customer_id,
             "order_status": self.order_status,
             "order_items": self.order_items,

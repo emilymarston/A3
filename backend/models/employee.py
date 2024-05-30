@@ -11,7 +11,6 @@ class Employee(db.Model):
     contact_number      = db.Column(db.String(15), nullable=False)
 
     __mapper_args__ = {
-        'polymorphic_identity': 'employee',
         'polymorphic_on': role
     }
 
