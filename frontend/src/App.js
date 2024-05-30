@@ -1,18 +1,13 @@
 import React, {useState, useEffect} from 'react';
+import 'logo192.png';
 
 function App() {
-  const [message, setMessage] = useState('');
 
-  useEffect(() => {
-    fetch('http://127.0.0.1:5000')  // This should match your Flask endpoint
-      .then(response => response.text())
-      .then(data => setMessage(data));
-  }, []);
 
   return (
     <div className="App">
-      <h1>{message}</h1>
       <p>   Hello, welcome to my React app!</p> {/* Add this line */}
+      <img src='logo192.png'/>
     </div>
   );
 }

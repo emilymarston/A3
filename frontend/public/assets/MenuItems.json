@@ -1,0 +1,87 @@
+[
+    {
+      "id": 1,
+      "name": "Espresso",
+      "price": 6.00,
+      "description": "Espresso",
+      "image": "Espresso.png"
+    },
+    {
+        "id": 2,
+        "name": "Double Espresso",
+        "price": 8.00,
+        "description": "Double Espresso",
+        "image": "DoubleEspresso.png"
+    },
+    {
+        "id": 3,
+        "name": "Americano",
+        "price": 4.00,
+        "description": "Double Espresso",
+        "image": "Americano.png"
+    },
+    {
+        "id": 4,
+        "name": "Flat White",
+        "price": 8.00,
+        "description": "Double Espresso",
+        "image": "FlatWhite.png"
+    },
+    {
+        "id": 5,
+        "name": "Cafe Latte",
+        "price": 6.00,
+        "description": "Espresso",
+        "image": "Espresso.png"
+      },
+      {
+          "id": 6,
+          "name": "Macchiato",
+          "price": 8.00,
+          "description": "Double Espresso",
+          "image": "DoubleEspresso.png"
+      },
+      {
+          "id": 7,
+          "name": "Cappucino",
+          "price": 4.00,
+          "description": "Double Espresso",
+          "image": "Espresso.png"
+      },
+      {
+          "id": 8,
+          "name": "Frappucino",
+          "price": 8.00,
+          "description": "Double Espresso",
+          "image": "Espresso.png"
+      },
+    {
+        "id": 9,
+        "name": "Chicken Sandwich",
+        "price": 20.00,
+        "description": "Delicious",
+        "image": "ChickenSandwich.png"
+    },
+    {
+        "id": 10,
+        "name": "Beef Burger",
+        "price": 18.00,
+        "description": "Delicious",
+        "image": "BeefBurger.png"
+    },
+    {
+        "id": 11,
+        "name": "Tuna Sandwich",
+        "price": 18.00,
+        "description": "Delicious",
+        "image": "TunaSandwich.png"
+    },
+    {
+        "id": 12,
+        "name": "Chocolate Waffle",
+        "price": 22.00,
+        "description": "Sweet like sugar",
+        "image": "ChocolateWaffle.png"
+    }
+]
+  
