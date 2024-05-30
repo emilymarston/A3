@@ -11,7 +11,8 @@ class Employee(db.Model):
     contact_number      = db.Column(db.String(15), nullable=False)
 
     __mapper_args__ = {
-        'polymorphic_on': role
+        'polymorphic_on': role,
+        'polymorphic_identity': 'employee'
     }
 
     def __init__(self, name, contact_number, role='employee'):
