@@ -89,11 +89,23 @@ def create_app():
         html_content = "<style> table { border-collapse: collapse; } th, td { padding: 5px; } </style>"
         html_content += "<h2>Customers</h2>"
         html_content += "<table border='1'>"
-        html_content += "<tr><th>Customer ID</th><th>Name</th><th>Contact Information</th><th>Address</th><th>Membership Status</th></tr>"
+        html_content += "<tr><th>Customer ID</th><th>Name</th><th>Contact Information</th><th>Address</th><th>Membership Status</th><th>Orders</th><th>Reservations</th></tr>"
         for customer in customers:
-            html_content += f"<tr><td>{customer.customer_id}</td><td>{customer.name}</td><td>{customer.contact_info}</td><td>{customer.address}</td><td>{customer.get_membership_status()}</td></tr>"
+            html_content += f"<tr><td>{customer.customer_id}</td><td>{customer.name}</td><td>{customer.contact_info}</td><td>{customer.address}</td><td>{customer.get_membership_status()}</td>"
+            
+            html_content += "<td>"
+            for order in customer.orders:
+                html_content += f"Order ID: {order.order_id}, Status: {order.order_status}<br>"
+            html_content += "</td>"
+            
+            html_content += "<td>"
+            for reservation in customer.reservations:
+                html_content += f"Reservation ID: {reservation.reservation_id}, Date: {reservation.reservation_date.strftime('%Y-%m-%d')}<br>"
+            html_content += "</td>"
+            
+            html_content += "</tr>"
         html_content += "</table>"
-        
+
         # Display reservations data
         html_content += "<h2>Reservations</h2>"
         html_content += "<table border='1'>"
@@ -128,7 +140,7 @@ def create_app():
         html_content += "</table>"
 
         return html_content
-
+    
     return app
 
 if __name__ == '__main__':

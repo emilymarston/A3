@@ -8,7 +8,7 @@ class Order(db.Model):
     order_date      = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
     customer_id     = db.Column(db.Integer, db.ForeignKey('customers.customer_id'), nullable=False)
     order_status    = db.Column(db.String(50), nullable=False)
-    order_items     = db.Column(db.Text, nullable=False)  # Storing items as a JSON string
+    order_items     = db.Column(db.Text, nullable=False)
     order_type      = db.Column(db.String(50), nullable=False)
 
     bill = db.relationship('Bill', back_populates='order', uselist=False)
