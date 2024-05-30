@@ -1,3 +1,4 @@
+from .db import db
 from .employee import Employee
 from .manager import Manager
 from .waitstaff import Waitstaff
@@ -10,11 +11,10 @@ from .membership import Membership
 from .asset import Asset
 from .customer import Customer
 from .in_store_customer import InStoreCustomer
-from online_customer import OnlineCustomer
+from .online_customer import OnlineCustomer
 from .order import Order
 from .menu_item import MenuItem
 from .bill import Bill
 from .payment_method import PaymentMethod
 from .cash import Cash
 from .credit_card import CreditCard
-from . import db

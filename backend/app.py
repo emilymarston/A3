@@ -1,26 +1,25 @@
 from flask import Flask
-from models import db
-from routes import *
+from models.db import db
+from routes import register_routes
 
 def create_app():
-    # Create Flask application instance
     app = Flask(__name__)
-
-    # Configure database URI
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'your_database_uri_here'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///example.sqlite3'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-    # Initialize database
     db.init_app(app)
 
-    # Register blueprints
+    with app.app_context():
+        # Import models to register them with SQLAlchemy
+        import models
+        
+        # Optionally, create the database tables if they do not exist
+        db.create_all()
+
     register_routes(app)
 
     return app
 
-# Create the Flask application instance
-app = create_app()
-
 if __name__ == '__main__':
-    # Run the application
+    app = create_app()
     app.run(debug=True)

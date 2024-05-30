@@ -1,11 +1,11 @@
+from .db import db
 from .employee import Employee
-from . import db
 from .order import Order
 from flask import abort
 
 class KitchenStaff(Employee):
     __tablename__ = 'kitchen_staff'
-    id = db.Column(db.Integer, db.ForeignKey('employees.employee_id'), primary_key=True)
+    id = db.Column(db.Integer, db.ForeignKey('employees.id'), primary_key=True)
 
     __mapper_args__ = {
         'polymorphic_identity': 'kitchen_staff',

@@ -1,4 +1,4 @@
-from payment_method import PaymentMethod
+from .payment_method import PaymentMethod
 
 class Cash(PaymentMethod):
     def get_payment_method(self) -> str:

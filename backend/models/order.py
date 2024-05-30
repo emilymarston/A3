@@ -4,12 +4,12 @@ from datetime import datetime
 class Order(db.Model):
     __tablename__ = 'orders'
 
-    order_id = db.Column(db.Integer, primary_key=True)
-    order_date = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
-    customer_id = db.Column(db.Integer, db.ForeignKey('customers.customer_id'), nullable=False)
-    order_status = db.Column(db.String(50), nullable=False)
-    order_items = db.Column(db.Text, nullable=False)  # Storing items as a JSON string
-    order_type = db.Column(db.String(50), nullable=False)
+    order_id        = db.Column(db.Integer, primary_key=True)
+    order_date      = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
+    customer_id     = db.Column(db.Integer, db.ForeignKey('customers.customer_id'), nullable=False)
+    order_status    = db.Column(db.String(50), nullable=False)
+    order_items     = db.Column(db.Text, nullable=False)  # Storing items as a JSON string
+    order_type      = db.Column(db.String(50), nullable=False)
 
     def __init__(self, customer_id, order_status, order_items, order_type):
         self.customer_id = customer_id

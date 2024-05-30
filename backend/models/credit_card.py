@@ -1,4 +1,4 @@
-from payment_method import PaymentMethod
+from .payment_method import PaymentMethod
 
 class CreditCard(PaymentMethod):
     surcharge: float = 0.02  # 2% surcharge

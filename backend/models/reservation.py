@@ -1,14 +1,14 @@
-from . import db
+from .db import db
 from datetime import datetime
-from asset import Asset
+from .asset import Asset
 
 class Reservation(db.Model):
     __tablename__ = 'reservations'
 
-    reservation_id = db.Column(db.Integer, primary_key=True)
-    reservation_date = db.Column(db.DateTime, nullable=False)
-    table_number = db.Column(db.Integer, db.ForeignKey('assets.id'), nullable=False)
-    number_of_guests = db.Column(db.Integer, nullable=False)
+    reservation_id      = db.Column(db.Integer, primary_key=True)
+    reservation_date    = db.Column(db.DateTime, nullable=False)
+    table_number        = db.Column(db.Integer, db.ForeignKey('assets.id'), nullable=False)
+    number_of_guests    = db.Column(db.Integer, nullable=False)
 
     table = db.relationship('Asset')
 

@@ -1,6 +1,6 @@
+from .db import db
 from dataclasses import dataclass, field
 from typing import List
-from . import db
 from .membership import Membership
 from .feedback import Feedback
 

@@ -1,4 +1,4 @@
-from . import db
+from .db import db
 from datetime import datetime
 from  models import Employee
 from .reservation import Reservation
@@ -8,7 +8,7 @@ from flask import abort
 
 class Waitstaff(Employee):
     __tablename__ = 'waitstaff'
-    id = db.Column(db.Integer, db.ForeignKey('employees.employee_id'), primary_key=True)
+    id = db.Column(db.Integer, db.ForeignKey('employees.id'), primary_key=True)
 
     __mapper_args__ = {
         'polymorphic_identity': 'waitstaff',

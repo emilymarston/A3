@@ -1,11 +1,11 @@
-from . import db
+from .db import db
 
 class MenuItem(db.Model):
     __tablename__ = 'menu_items'
 
-    menu_item_id = db.Column(db.Integer, primary_key=True)
-    menu_description = db.Column(db.String(255), nullable=False)
-    price = db.Column(db.Float, nullable=False)
+    menu_item_id        = db.Column(db.Integer, primary_key=True)
+    menu_description    = db.Column(db.String(255), nullable=False)
+    price               = db.Column(db.Float, nullable=False)
 
     def __init__(self, menu_description, price):
         self.menu_description = menu_description

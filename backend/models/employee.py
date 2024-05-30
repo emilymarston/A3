@@ -1,11 +1,11 @@
-from . import db
+from .db import db
 from datetime import datetime
 from .reservation import Reservation
 
 class Employee(db.Model):
     __tablename__ = 'employees'
 
-    employee_id         = db.Column(db.Integer, primary_key=True)
+    id                  = db.Column(db.Integer, primary_key=True)
     name                = db.Column(db.String(100), nullable=False)
     role                = db.Column(db.String(50), nullable=False)
     contact_number      = db.Column(db.String(15), nullable=False)

@@ -1,4 +1,4 @@
-from flask import Flask, Blueprint
+from flask import Blueprint
 
 # Import individual route files
 from .employee_routes import employee_routes
@@ -19,7 +19,6 @@ from .menu_item_routes import menu_item_routes
 from .bill_routes import bill_routes
 from .payment_method_routes import payment_method_routes
 
-# Create blueprints for each set of routes
 blueprints = [
     employee_routes,
     manager_routes,
@@ -40,13 +39,6 @@ blueprints = [
     payment_method_routes
 ]
 
-# Register all blueprints
 def register_routes(app):
     for blueprint in blueprints:
         app.register_blueprint(blueprint)
-
-# You might also add a convenience function to register routes in your app
-def create_app():
-    app = Flask(__name__)
-    register_routes(app)
-    return app

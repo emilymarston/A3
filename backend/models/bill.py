@@ -1,18 +1,18 @@
-from . import db
+from .db import db
 from datetime import datetime
 from .order import Order
 
 class Bill(db.Model):
     __tablename__ = 'bills'
 
-    bill_id = db.Column(db.Integer, primary_key=True)
-    order_id = db.Column(db.Integer, db.ForeignKey('orders.order_id'), nullable=False)
-    total_amount = db.Column(db.Float, nullable=False)
-    final_amount = db.Column(db.Float, nullable=False)
-    discounts = db.Column(db.Float, default=0.0)
-    taxes = db.Column(db.Float, default=0.0)
-    service_charges = db.Column(db.Float, default=0.0)
-    transaction_date = db.Column(db.DateTime, default=datetime.utcnow)
+    bill_id             = db.Column(db.Integer, primary_key=True)
+    order_id            = db.Column(db.Integer, db.ForeignKey('orders.order_id'), nullable=False)
+    total_amount        = db.Column(db.Float, nullable=False)
+    final_amount        = db.Column(db.Float, nullable=False)
+    discounts           = db.Column(db.Float, default=0.0)
+    taxes               = db.Column(db.Float, default=0.0)
+    service_charges     = db.Column(db.Float, default=0.0)
+    transaction_date    = db.Column(db.DateTime, default=datetime.utcnow)
 
     order = db.relationship('Order', back_populates='bill')
 

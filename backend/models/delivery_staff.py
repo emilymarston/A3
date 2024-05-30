@@ -1,5 +1,5 @@
+from .db import db
 from .employee import Employee
-from . import db
 from .order import Order
 
 class DeliveryStaff(Employee):
