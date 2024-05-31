@@ -1,5 +1,6 @@
 from .db import db
 from datetime import datetime
+from .asset import Asset
 
 class Reservation(db.Model):
     __tablename__ = 'reservations'
@@ -11,15 +12,15 @@ class Reservation(db.Model):
     customer_id         = db.Column(db.Integer, db.ForeignKey('customers.customer_id'), nullable=False)
 
     def __init__(self, reservation_date_str, table_number, number_of_guests, customer_id):
-        self.reservation_date = datetime.strptime(reservation_date_str, "%d-%m-%Y")
-        self.table_number = table_number
+        self.reservation_date = datetime.strptime(reservation_date_str, "%Y-%m-%d %H:%M") 
         self.number_of_guests = number_of_guests
+        self.table_number = table_number
         self.customer_id = customer_id
 
     def to_dict(self):
         return {
             "reservation_id": self.reservation_id,
-            "reservation_date": self.reservation_date.strftime("%d-%m-%Y"),
+            "reservation_date": self.reservation_date.strftime("%Y-%m-%d %H:%M"),
             "table_number": self.table_number,
             "number_of_guests": self.number_of_guests,
         }

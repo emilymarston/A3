@@ -31,8 +31,21 @@ def place_order(customer_id):
     data = request.json
     order_items = data.get('order_items')
     order_type = data.get('order_type')
-    order = customer.place_order(order_items, order_type)
-    return jsonify(order.to_dict()), 201
+
+    if order_type == 'DELIVERY':
+        if isinstance(customer, OnlineCustomer):
+            order = customer.place_order(order_items, order_type)
+            return jsonify(order.to_dict()), 201
+        else:
+            abort(400, description="Cannot place DELIVERY order for InStoreCustomer")
+    elif order_type == 'PICK-UP':
+        if isinstance(customer, InStoreCustomer):
+            order = customer.place_order(order_items, order_type)
+            return jsonify(order.to_dict()), 201
+        else:
+            abort(400, description="Cannot place PICK-UP order for OnlineCustomer")
+    else:
+        abort(400, description="Invalid order type")
 
 @customer_routes.route('/customers/<int:customer_id>/has_membership', methods=['GET'])
 def has_membership(customer_id):
@@ -43,6 +56,7 @@ def has_membership(customer_id):
 def made_reservation(customer_id):
     customer = InStoreCustomer.query.get_or_404(customer_id)
     customer.made_reservation()
+    db.session.commit()
     return '', 204
 
 @customer_routes.route('/customers/instore/<int:customer_id>/has_made_reservation', methods=['GET'])
@@ -65,6 +79,7 @@ def view_order(customer_id, order_id):
     customer = OnlineCustomer.query.get_or_404(customer_id)
     order = customer.view_order(order_id)
     if order:
-        return jsonify(order)
+        return jsonify(order.to_dict())
     else:
         abort(404, description="Order not found")
+

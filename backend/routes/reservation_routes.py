@@ -17,12 +17,14 @@ def get_reservation(id):
 
 @reservation_routes.route('/reservations', methods=['POST'])
 def create_reservation():
-    data = request.json
+    data = request.form
     try:
-        reservation_date = datetime.strptime(data['reservation_date'], '%Y-%m-%d %H:%M:%S')
-        reservation = Reservation(reservation_date=reservation_date, 
-                                  table_number=data['table_number'], 
-                                  number_of_guests=data['number_of_guests'])
+        reservation_date = datetime.strptime(data['date'] + ' ' + data['time'], '%Y-%m-%d %H:%M')
+        reservation = Reservation(name=data['name'], 
+                                  phone_number=data['phoneNumber'], 
+                                  reservation_date=reservation_date, 
+                                  numb_of_people=data['numbOfPeople'], 
+                                  special_requests=data['specialRequests'])
         db.session.add(reservation)
         db.session.commit()
         return jsonify(reservation.to_dict()), 201

@@ -16,7 +16,7 @@ from models.delivery_staff import DeliveryStaff
 
 def create_app():
     app = Flask(__name__)
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///example.sqlite3'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.sqlite3'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     db.init_app(app)
@@ -58,7 +58,7 @@ def create_app():
         db.session.commit()
 
         # Add sample reservation
-        sample_reservation2 = Reservation(reservation_date_str="11-03-2024", table_number=2, number_of_guests=3, customer_id=sample_customer2.customer_id)
+        sample_reservation2 = Reservation(reservation_date_str="2024-03-11 18:00", table_number=2, number_of_guests=3, customer_id=sample_customer2.customer_id)
         db.session.add(sample_reservation2)
         db.session.commit()
 
@@ -100,7 +100,7 @@ def create_app():
             
             html_content += "<td>"
             for reservation in customer.reservations:
-                html_content += f"Reservation ID: {reservation.reservation_id}<br>Date: {reservation.reservation_date.strftime('%Y-%m-%d')}<br>"
+                html_content += f"Reservation ID: {reservation.reservation_id}<br>Date: {reservation.reservation_date.strftime('%Y-%m-%d %H:%M')}<br>"
             html_content += "</td>"
             
             html_content += "</tr>"
@@ -111,7 +111,7 @@ def create_app():
         html_content += "<table border='1'>"
         html_content += "<tr><th>Reservation ID</th><th>Reservation Date</th><th>Table Number</th><th>Number of Guests</th><th>Customer ID</th></tr>"
         for reservation in reservations:
-            html_content += f"<tr><td>{reservation.reservation_id}</td><td>{reservation.reservation_date}</td><td>{reservation.table_number}</td><td>{reservation.number_of_guests}</td><td>{reservation.customer_id}</td></tr>"
+            html_content += f"<tr><td>{reservation.reservation_id}</td><td>{reservation.reservation_date.strftime('%Y-%m-%d %H:%M')}</td><td>{reservation.table_number}</td><td>{reservation.number_of_guests}</td><td>{reservation.customer_id}</td></tr>"
         html_content += "</table>"
 
         # Display orders data
@@ -119,7 +119,7 @@ def create_app():
         html_content += "<table border='1'>"
         html_content += "<tr><th>Order ID</th><th>Order Date</th><th>Customer ID</th><th>Order Status</th><th>Items</th><th>Order Type</th></tr>"
         for order in orders:
-            html_content += f"<tr><td>{order.order_id}</td><td>{order.order_date.strftime('%Y-%m-%d')}</td><td>{order.customer_id}</td><td>{order.order_status}</td><td>{order.order_items}</td><td>{order.order_type}</td></tr>"
+            html_content += f"<tr><td>{order.order_id}</td><td>{order.order_date.strftime('%Y-%m-%d')}</td></tr>"
         html_content += "</table>"
 
         # Display feedbacks data
