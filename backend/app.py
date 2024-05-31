@@ -1,6 +1,9 @@
 from flask import Flask
 from flask_migrate import Migrate
+from flask_cors import CORS
 from datetime import datetime
+
+from routes import register_routes
 
 from models.db import db
 from models.customer import Customer
@@ -16,6 +19,7 @@ from models.delivery_staff import DeliveryStaff
 
 def create_app():
     app = Flask(__name__)
+    CORS(app, origins='http://localhost:3000')
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.sqlite3'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -76,6 +80,12 @@ def create_app():
         db.session.add(sample_employee4)
         db.session.commit()
 
+    register_routes(app)
+
+    @app.route('/test/reservation_route')
+    def test_reservation():
+        return 'Reservation route is running!'
+
     @app.route('/')
     def hello_world():
         # Fetch data from the tables
@@ -119,7 +129,7 @@ def create_app():
         html_content += "<table border='1'>"
         html_content += "<tr><th>Order ID</th><th>Order Date</th><th>Customer ID</th><th>Order Status</th><th>Items</th><th>Order Type</th></tr>"
         for order in orders:
-            html_content += f"<tr><td>{order.order_id}</td><td>{order.order_date.strftime('%Y-%m-%d')}</td></tr>"
+            html_content += f"<tr><td>{order.order_id}</td><td>{order.order_date.strftime('%Y-%m-%d')}</td><td>{order.customer_id}</td><td>{order.order_status}</td><td>{order.order_items}</td><td>{order.order_type}</td></tr>"
         html_content += "</table>"
 
         # Display feedbacks data

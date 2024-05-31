@@ -64,3 +64,4 @@ def register_routes(app):
 
     for blueprint in blueprints:
         app.register_blueprint(blueprint)
+        print(f"Blueprint '{blueprint.name}' imported successfully.")
