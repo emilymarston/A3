@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { TextField, Typography, Button, Paper } from '@mui/material';
 import { Link } from 'react-router-dom';
-import Test from './test.json';
 
 
 const DeliveryPage = () => {

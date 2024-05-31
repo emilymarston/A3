@@ -3,7 +3,7 @@ import NavBar from './components/header/NavBar'
 import Homepage from './pages/Homepage'
 import Footer from './components/footer/Footer'
 import PickUp from './pages/PickUp'
-//import MenuPage from './pages/MenuPage'
+import MenuPage from './pages/MenuPage'
 import CustomerLogin from './pages/LoginMember'
 import CustomerForm from './pages/CustomerForm'
 import DeliveryPage from './pages/DeliveryPage'
@@ -20,7 +20,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/pickup" element={<PickUp />} />
-        {/*<Route path="/menupage" element={<MenuPage />} />*/}
+        <Route path="/menupage" element={<MenuPage />} />
         <Route path="/customerlogin" element={<CustomerLogin />} />
         <Route path="/customerform" element={<CustomerForm />} />
         <Route path="/deliverypage" element={<DeliveryPage />} />
